@@ -1,13 +1,10 @@
 name: Scan Pull Request
 
 on:
-  pull_request:
-    branches: [ main ]
-    types: [opened, edited, synchronize, reopened, labeled, unlabeled]
-
-concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
+  workflow_call:
+    secrets:
+      GITHUB_TOKEN:
+        required: true
 
 jobs:
   check-pull-request-title:
